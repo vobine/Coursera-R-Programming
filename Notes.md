@@ -48,3 +48,30 @@ Vectors
     * Lists, created by l <- list(), are vectors with mixed
       types. Printed representation is like a vector but with indices
       in doubled brackets.
+
+	* Factors: categorical data, represented as a vector of integers,
+      in which each integer value has a label. Built with function
+      *factor*, which takes an optional "levels" named parameter to
+      specify the full set of level values and their order. Default
+      order is alphabetical.
+
+	* Missing values: NA, NaN. NaN is a proper subset of NA. Test with
+      is.na and is.nan.
+
+	* Data Frames for tabular data. List of columns: all columns have
+      same length, each column has a single type; but column types are
+      independent. Create with data.frame().
+
+	* Objects can have names, set/read with names(). List names are a
+      special case(?):
+	  lll = list(a=1, b=42, c=127)
+	  lll$a
+
+	  Also: dimnames()
+
+	* Subsetting: single-brack extracts objects of same class as
+      original; double-brack extracts elements of list or data
+      frame. Dollar sign works as double-brack for named elements.
+	  Single-brack indices can be numeric or logical, atomic or
+      aggregate.
+	  Beware of dimensionality in matrix subsets!
