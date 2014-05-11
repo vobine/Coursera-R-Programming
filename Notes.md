@@ -75,3 +75,52 @@ Vectors
 	  Single-brack indices can be numeric or logical, atomic or
       aggregate.
 	  Beware of dimensionality in matrix subsets!
+
+	* Lots going on with subsetting lists. In particular, a
+      double-brack subset with a vector subscript recurses into the
+      list.
+	  `x <= list(a=list(1:3), b=list(4:6))`
+	  `x[[c(1, 2)]]` returns `2`.
+
+	* Dollar-sign subsets can do partial matches. Double-brack
+      requires exact match by default, but an option (exact=FALSE)
+      gives partial matching.
+
+	* Useful function: complete.cases(x1, x2, ...) is
+      not(or(is.na(x1), is.na(x2), ...)) . Works on data frames too.
+
+ * Reading/writing data
+
+Lots of choices here. read.table, read.csv, readLines, source, dget,
+load, unserialize
+
+write.table, writeLines, dump, dput, save, serialize
+
+"Most commonly used" is read.table, for a text table:
+    * file is a file or connection
+	* header: is the first line a row of column headers?
+	* sep: column separator (e.g., tab, comma)
+	* colClasses
+	* ... stringsAsFactors
+
+read.csv is read.table, with slightly different defaults: column
+separator is comma, not space, and header is TRUE.
+
+**Read the help page for read.table.**
+
+To speed up read.* for large datasets, specify colClasses. If you
+don't know what it should be, try to infer it from the head of the
+data:
+ttt <- read.table ("bigdata.txt", colClasses = sapply (read.table ("bigdata.txt", nrows=100), class))
+
+dump/source and dput/dget produce textual representation with metadata inluded.
+
+dput/dget speak R source code.
+
+dump/source are similar to dput/dget but operate on single R object. **what? this is unclear. look it up.**
+
+* Files
+
+file, gzfile, bzfile, url produce "connections," which are abstract file-like data streams.
+
+Try swirl!
