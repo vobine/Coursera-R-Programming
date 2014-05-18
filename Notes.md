@@ -124,3 +124,53 @@ dump/source are similar to dput/dget but operate on single R object. **what? thi
 file, gzfile, bzfile, url produce "connections," which are abstract file-like data streams.
 
 Try swirl!
+
+## Week 2.
+
+### Control structures.
+
+if. An if can be the RHS of an assignment:
+y <= if (foo) { bar } else { baz }
+
+for. Several flavors.
+
+* for (i in 1:10) { print(i) }
+
+* x <- c( "a", "b", "c", "d" )
+
+* for (i in seq_along(x)) { print ( c(i, x[i])) }
+
+* for (xx in x) print (xx)
+
+while.
+
+Logical operators: &&
+
+repeat/break.
+
+next skips an iteration (like continue?) return, um, returns.
+
+Functions!
+ f <- function (formalParameters) { body }
+
+Return value is by default the value of the last statement executed.
+
+Actual parameters can be named or positional.
+sd (mydata)
+sd (x=mydata)
+sd (x=mydata, na.rm=FALSE)
+sd (na.rm=FALSE, mydata)
+... scary.
+
+Default values declared in formal parameter lists with =
+
+Many exciting ways to scramble calling order and named params. Don't.
+
+Function parameters are lazily evaluated.
+
+Variable argument list: ...
+myplot <- function (x, y, ...) {
+plot (x, y, type="l", ...)
+}
+
+Examples: paste and cat.
