@@ -1,6 +1,8 @@
-# Notes for R Programming
+Notes for R Programming
+========================
 
-## Lecture 1 20140510
+Lecture 1 20140510
+--------------------------------------
 
 * Preliminary: R Studio deals with working directories as projects,
   which is a bit different from the R interface described in the
@@ -174,3 +176,55 @@ plot (x, y, type="l", ...)
 }
 
 Examples: paste and cat.
+
+First R function
+
+Okay, not quite first, but this is a useful example:
+
+```columnMean <- function (y, removeNA=TRUE)
+{
+nc <-  ncol(y)
+means <- numeric (nc)
+for(i in 1:nc) {
+means[i] <- mean(y[, i], rm.na=removeNA)
+}
+}```
+
+This will come in handy for project 1!
+
+Coding standards!
+* use text
+* indent
+* limit line width
+* limit function length
+
+Scoping rules!
+
+`search()`
+
+Functions live in a dedicated namespace, separate from all other classes.
+
+R uses static scoping.
+
+Functions that return function closures:
+```make.power <- function(n) {
+ pow<- function(x) {x^n}
+pow }
+cube <- make.power(3)```
+
+All objects must be in memory, to permit lookups in defining environments.
+
+Vectorization!
+
+Operations (*, /) are element-wise. Use %*% for matrix multiplication.
+
+Dates and times
+
+classes `Date`, `POSIXct` big integer, `POSIXlt` list
+
+as.Date(e.g., string)
+
+*unclass* can be handy!
+
+`strptime`, of course
+
