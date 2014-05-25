@@ -228,3 +228,45 @@ as.Date(e.g., string)
 
 `strptime`, of course
 
+many ways to apply (Week 3a)
+--------------------------------
+
+ - lapply(x, fun, ...) applies a function to each element of a list and returns a list of the results.
+
+    - lapply (x, runif, min=0, max=10) passes extra parameters to runif.
+
+ - Anonymous functions, e.g., `lapply (x, function(elt) elt[,1])`
+
+ - sapply is like lapply, but tries to simplify the result: e.g., if the result of lapply would be a list of numbers, then sapply returns it as a vector. If the result of lapply would be a list of numeric aggregates, all of the same length, then sapply would return a matrix.
+
+ - apply(x, margin, fun) works on a margin of an array. "margin" is a list of dimensions to be _retained_ in the result.
+
+    - x <- matrix(rnorm(200), 20, 10)
+      apply (x, 2, mean) takes means of columns
+      apply (x, 1, sum) takes sum of rows
+
+    - rowSums, rowMeans, colSums, colMeans are special cases.
+
+ - tapply (x, index, fun=NULL, ..., simplify=TRUE) applies a function over subsets of a vector; index is a list of factors.
+
+    - So we can, e.g., take means of x grouped by a factor variable f:
+      x <- c(rnorm(10), runif(10) rnorm(10, 1))
+      f <- gl(3, 10)
+      tapply(x, f, mean)
+
+ - split: like tapply without summary statistics. split(x, f)
+
+   Splitting can work at multiple levels (note the *interaction* function as well).
+
+   split (rnorm (10), list (gl(2, 5), gl(5, 2)), drop=TRUE)
+
+ - mapply has a very different signature: it applies to multiple lists. E.g., vectorize a function that does not allow for vector inputs:
+   mapply (function(n, m, s) rnorm(n, m, s), 1:5, 1:5, 2)
+
+Debugging (week 3b)
+----------------------------------------------------------------
+
+conditions / {warnings, errors, messages}
+
+traceback; debug; browser; trace; recover
+
