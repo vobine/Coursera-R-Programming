@@ -270,3 +270,31 @@ conditions / {warnings, errors, messages}
 
 traceback; debug; browser; trace; recover
 
+str (week 4a)
+----------------
+
+Alternative to summary, head: ways to get a quick look at the content of an object.
+
+Simulation (week 4b)
+----------------------------------------------------------------
+
+For each distribution, there are four functions: d for density, r for random number generation, p for cumulative distribution, q for quantiles. So, e.g., for normal distribution you have dnorm, rnorm, pnorm, and qnorm.
+
+set.seed 
+
+Generating random numbers from a linear model!
+
+sample: draw randomly from a vector of values.
+
+Profiling (week 4c)
+----------------------------------------------------------------
+
+system.time() returns CPU user-space time and elapsed wall-clock time.
+
+Rprof() only works if support is compiled in (as it usually is). Samples call stack at regular sampling intervals, 20ms by default.
+
+Scoping rules and optimization (week 4d)
+----------------------------------------------------------------
+
+motivation: optim, nlm, optimize use closures.
+
