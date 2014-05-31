@@ -3,7 +3,7 @@ best <- function(state, outcome) {
   outcomes <- read.csv ('ProgAssignment3-data/outcome-of-care-measures.csv');
 
   ## Check that state and outcome are valid
-  myOutcomes <- outcomes[outcomes[,7] == state,];
+  myOutcomes <- outcomes[outcomes$State == state,];
   if (nrow (myOutcomes) < 1) {
     stop ('invalid state');
   }
