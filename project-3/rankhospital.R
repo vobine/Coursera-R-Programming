@@ -4,7 +4,9 @@ rankhospital <- function(state, outcome, num='best') {
                         colClasses = 'character');
 
   ## Check that state and outcome are valid
-  outcomeCodes = list ('heart attack' = 11, 'heart failure' = 17, 'pneumonia' = 23);
+  outcomeCodes = list ('heart attack' = 11, 
+                       'heart failure' = 17,
+                       'pneumonia' = 23);
   outcomeCol = outcomeCodes[[outcome]];
   if (is.null (outcomeCol)) {
     stop ('invalid outcome');
@@ -19,7 +21,9 @@ rankhospital <- function(state, outcome, num='best') {
   myOutcomes[, outcomeCol] <- as.numeric (myOutcomes[, outcomeCol]);
 
   ## Rank outcomes
-  ranks <- order (myOutcomes[, outcomeCol], as.character (myOutcomes$Hospital.Name))
+  ranks <- order (myOutcomes[, outcomeCol], 
+                  as.character (myOutcomes$Hospital.Name), 
+                  na.last=NA)
 
   ## Convert special-case rank values
   if (num == 'best') {
