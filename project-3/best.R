@@ -1,6 +1,7 @@
 best <- function(state, outcome) {
   ## Read outcome data
-  outcomes <- read.csv ('ProgAssignment3-data/outcome-of-care-measures.csv');
+  outcomes <- read.csv ('ProgAssignment3-data/outcome-of-care-measures.csv',
+                        colClasses = 'character');
 
   ## Check that state and outcome are valid
   myOutcomes <- outcomes[outcomes$State == state,];
@@ -14,7 +15,12 @@ best <- function(state, outcome) {
     stop ('invalid outcome');
   }
 
+  ## Convert the outcome column
+  myOutcomes[, outcomeCol] <- as.numeric (myOutcomes[, outcomeCol]);
+
   ## Return hospital name in that state with lowest 30-day death rate
-  ## return (myOutcomes[[which.min (myOutcomes[, outcomeCol]), 1]])
-  return (as.character (myOutcomes$Hospital.Name[which.min (myOutcomes[, outcomeCol])]))
+  minimum <- min (myOutcomes[, outcomeCol], na.rm=TRUE)
+  candidates <- myOutcomes[myOutcomes[, outcomeCol] == minimum, ];
+  return (min (as.character (candidates$Hospital.Name[!is.na (myOutcomes[, outcomeCol])]),
+               na.rm=TRUE))
 }
